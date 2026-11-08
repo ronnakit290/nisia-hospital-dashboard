@@ -236,11 +236,9 @@ export function AppLayout() {
 
   const current = navItems.find((item) => item.to === location.pathname) ?? navItems[0]
   const unreadCount = notifications.filter((item) => !readNotifications.includes(item.id)).length
-  const dateLabel = new Intl.DateTimeFormat('th-TH', { day: 'numeric', month: 'short', year: 'numeric' }).format(new Date())
-
-  useEffect(() => {
-    setSidebarOpen(false)
-  }, [location.pathname])
+  const [dateLabel] = useState(() =>
+    new Intl.DateTimeFormat('th-TH', { day: 'numeric', month: 'short', year: 'numeric' }).format(new Date()),
+  )
 
   useEffect(() => {
     function handlePointerDown(event: MouseEvent) {
